@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <title>3단 레이아웃</title>
+    <style>
+      #container{
+        border : 1px solid;
+        box-sizing:border-box;
+        width:960px;
+        padding : 20px;
+      }
+      header{
+        border : 1px solid;
+        padding : 10px;
+        margin-bottom:20px;
+      }
+      #left{
+        border : 1px solid;
+        box-sizing : border-box;
+        width:220px;
+        padding:20px;
+        float : left;
+        margin-bottom:20px;
+      }
+      #right{
+        border : 1px solid;
+        box-sizing : border-box;
+        width:220px;
+        padding : 20px;
+        float : right;
+      }
+      section{
+        border : 1px solid;
+        box-sizing : border-box;
+        width:468px;
+        padding:20px;
+        float : left;
+        margin-left:5px;
+        margin-left:5px;
+        margin-bottom:20px;
+      }
+      footer{
+        border : 1px solid;
+        clear:both;
+        padding : 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <header>
+        <h1>사이트 제목</h1>
+      </header>
+      <aside id = "left">
+        <h3>왼쪽 사이드 바</h3>
+          <p>광고1</p>
+          <p>광고2</p>
+      </aside>
+      <section>
+        <h3>본문</h3>
+        <p>내용입력1</p>
+        <p>내용입력2</p>
+      </section>
+      <aside id ="right">
+        <h3>오른쪽 사이드 바</h3>
+        <p>광고1</p>
+        <p>광고2</p>
+      </aside>
+      <footer>
+        <p>저작권 정보, 연락처 등</p>
+      </footer>
+    </div>
+  </body>
+</html>

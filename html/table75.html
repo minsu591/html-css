@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset = "utf-8">
+    <title>table</title>
+    <style>
+      table{
+        border-collapse:collapse;
+        border:3px solid #333;
+      }
+      th,td{
+        border:1px solid #222;
+        padding:10px;
+      }
+      thead{
+        background:pink;
+      }
+      tfoot{
+        background:gray;
+        text-align:center;
+      }
+    </style>
+  </head>
+  <body>
+    <!--객실 정보-->
+    <table>
+      <caption>요안도라 객실</caption>
+      <thead>
+        <tr>
+          <th> 방이름 </th>
+          <th>대상</th>
+          <th>크기</th>
+          <th>가격</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>유채방</td>
+          <td>여성 도미토리</td>
+          <td rowspan = "3">4인실</td>
+          <td rowspan = "4">1인 20,000원</td>
+        </tr>
+        <tr>
+          <td rowspan = "2">동백방</td>
+          <td>동성 도미토리</td>
+        </tr>
+        <tr>
+          <td>가족 1팀</td>
+        </tr>
+        <tr>
+          <td>천혜향방</td>
+          <td>-</td>
+          <td>2인실</td>
+        </tr>
+      </tbody>
+
+      <tfoot>
+        <tr>
+          <td colspan = "4" >바깥채 전체를 렌트합니다</td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <hr>
+
+    <!--개인정보-->
+    <table>
+      <tbody>
+        <tr>
+          <th>이름</th>
+          <td width="150"></td>
+          <th>연락처</th>
+          <td width="150"></td>
+        </tr>
+        <tr>
+          <th>주소</th>
+          <td colspan = "3"></td>
+        </tr>
+        <tr>
+          <th>자기소개</th>
+          <td colspan = "3"></td>
+        </tr>
+      </tbody>
+      
+    </table>
+
+  </body>
+
+</html>

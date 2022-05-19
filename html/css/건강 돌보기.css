@@ -1,0 +1,71 @@
+body{
+  box-sizing:border-box;
+  width:960px;
+  margin:0 auto;
+}
+header{
+  background-color:#1c4284;
+  overflow:hidden;
+}
+header h1{
+  color:white;
+  float:left;
+  margin-left:10px;
+}
+header nav{
+  float : right;
+  margin:15px 0;
+}
+header nav ul li{
+  display:inline-block;
+  margin:0 20px;
+}
+header nav ul li a{
+  text-decoration: none;
+  font-weight:bold;
+  color:white;
+}
+section{
+  margin-top:30px;
+  clear:both;
+}
+
+#exam ul{
+  list-style-type:square;
+}
+#vaccine ol{
+  list-style-type:lower-alpha;
+}
+#exam, #vaccine,#explain{
+  width:300px;
+  float:left;
+  height:300px;
+}
+#food{
+  width:600px;
+  float:left;
+  margin-right:20px;
+  margin-bottom:50px;
+}
+img{
+  float:left;
+  width:300px;
+  height:200px;
+}
+footer{
+  clear:both;
+  background-color:#1c4284;
+}
+footer p{
+  color:white;
+  font-weight:bold;
+  padding: 20px;
+  text-align:center;
+}
+#explain span{
+  font-weight:bold;
+}
+h3{
+  clear:both;
+  font-size:150%;
+}

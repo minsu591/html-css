@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>상품 주문서</title>
+    <link href="/html/css/order.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>상품 주문서</h1>
+    </header>
+    <form>
+        <fieldset id ="personal">
+            <legend>개인 정보</legend>
+            <ul>
+                <li>
+                    <label for="name">이름</label>
+                    <input type="text" id="name" placeholder="여백없이 입력">
+                </li>
+                <li>
+                    <label for="pw">연락처</label>
+                    <input type="tel" id="pw" placeholder="연락가능한 번호">
+                </li>
+            </ul>
+        </fieldset>
+        <fieldset id="ad">
+            <legend>배송지 정보</legend>
+            <ul>
+                <li>
+                    <label for="address">주소</label>
+                    <input type="text" id ="address">
+                </li>
+                <li>
+                    <label for="telephone">전화번호</label>
+                    <input type="tel" id="telephone">
+                </li>
+                <li>
+                    <label for="memo">메모</label><input type="text" id="memo">
+                </li>
+            </ul>
+        </fieldset>
+        <fieldset id = "order">
+            <legend>주문 정보</legend>
+            <ul>
+                <li>
+                    <label><input type="checkbox" name="참외" value="number">경북성주 참외(5kg)<input type="nubmer" min="0" max="5" value="0">Box</label>
+                </li>
+                <li>
+                    <label><input type="checkbox" name="포도" value="number">경북영천 포도(5kg)<input type="number" min="0" max="5" value="0">Box</label>
+                </li>
+                <li>
+                    <label><input type="checkbox" name="수박" value="number">경북봉화 수박(5kg)<input type="number" min="0" max="5" value="0">Box</label>
+                </li>
+
+            </ul>
+        </fieldset>
+        <div id="button">
+            <input type="submit" value="주문하기">
+            <input type="reset" value="다시 작성">
+        </div>
+        
+    </form>
+    
+</body>
+</html>

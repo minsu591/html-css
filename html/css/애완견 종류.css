@@ -2,22 +2,27 @@ body{
   width:80%;
   margin:0 auto;
   background-color:#f3ebd9;
+  font-family:"맑은 고딕", "고딕", "굴림";
   
 }
 nav ul li{
   display:inline-block;
-  margin:20px;
+  padding:10px;
   list-style-position:inside;
+}
+header li{
+  margin:28px 0;
 }
 a{
   text-decoration:none;
 }
-nav ul li a{
+nav a{
   font-weight: bold;
   text-align:center;
 }
 header nav ul li a{
   color:white;
+  font-size:18px;
 }
 section nav ul li a{
   color:black;
@@ -27,8 +32,13 @@ section nav{
   text-align:center;
 }
 
+section{
+  padding:10px;
+}
+
 header{
   background-color:#f3c076;
+  height:100px;
   margin:0 0;
   text-align:right;
 }
@@ -53,7 +63,7 @@ dd{
   padding : 0 5%;
   border-radius:15px;
 }
-
+/*aside*/
 aside{
   border:2px dashed #F38376;
   background-color:#ffebe8;

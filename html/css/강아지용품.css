@@ -5,7 +5,7 @@ body{
 header{
   background-color:#301c84;
   margin: 0 auto;
-  padding:10px;
+  height:80px;
 }
 nav ul li a{
   text-decoration:none;
@@ -14,7 +14,7 @@ nav ul li a{
 }
 nav ul li{
   display:inline-block;
-  margin:20px;
+  padding:29.5px 20px;
 }
 
 h1{
@@ -23,9 +23,11 @@ h1{
 article{
   box-sizing:border-box;
   width:300px;
-  height:300px;
+  padding : 10px;
   float:left;
+  height :300px;
 }
+
 
 aside{
   float:right;
@@ -41,9 +43,6 @@ aside img{
   padding:10px 0;
 }
 
-#bowl{
-  float:left;
-}
 #house,#bowl{
   margin-right:20px;
 }
@@ -56,10 +55,10 @@ p{
 footer{
   clear:both;
   background-color:#301c84;
-  padding: 3%;
+  padding: 10px;
+  color:white;
 }
 footer p{
-  color:white;
   text-align:center;
   margin: 0;
 }

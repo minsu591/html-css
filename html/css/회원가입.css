@@ -1,0 +1,103 @@
+body{
+    width:1000px;
+    margin:0 auto;
+}
+header{
+    text-align:center;
+    padding-right:2%;
+}
+nav ul{
+    background-color:black;
+    color:white;
+
+}
+nav ul li{
+    list-style-type: none;
+    display:inline-block;
+    margin-right:20px;
+    float:left;
+}
+nav > ul > li > #loginmenu{
+    width:60px;
+    float:right;
+}
+#loginmenu{
+    float:right;
+}
+nav ul{
+    width:1000px;
+}
+#loginmenu{
+    float:right;
+}
+
+#c{
+    clear:both;
+}
+a{
+    text-decoration: none;
+}
+#left, section, #right{
+    box-sizing:border-box;
+}
+h4{
+    font-size:20px;
+    margin-top:5px;
+}
+section li{
+    width:400px;
+    list-style-type:none;
+    background-color:#e6e6e6;
+    border:1px solid white;
+    border-radius:5px;
+    padding:5px;
+    margin: 3px auto;
+}
+section ul{
+    padding : 0;
+}
+section label{
+    width:100px;
+    font-size:90%;
+    float:left;
+}
+#left{
+    width:20%;
+    height:800px;
+    float:left;
+    background-color:#e6e6e6;
+}
+section{
+    height:800px;
+    width:60%;
+    float:left;
+    text-align:center;
+}
+form{
+    background-color:gray;
+    margin: 0 60px;
+    
+}
+fieldset{
+    border : none;
+}
+
+#right{
+    width:20%;
+    height:800px;
+    float:right;
+    background-color:#e6e6e6;
+}
+#button input{
+    font-size:20px;
+    font-weight:bold;
+    padding:10px 20px;
+    border-radius:20px;
+    border : 1px solid gray;
+}
+#button{
+    margin-bottom: 40px 0;
+}
+footer{
+    clear:both;
+}

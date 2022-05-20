@@ -1,0 +1,21 @@
+body{
+    width:700px;
+    margin: 0 auto;
+}
+fieldset{
+    margin: 10px 0;
+}
+legend{
+    font-weight:bold;
+}
+li{
+    list-style-type:none;
+    padding: 5px 0;
+}
+span{
+    color:red;
+}
+#personal label, #info label{
+    width:150px;
+    float:left;
+}

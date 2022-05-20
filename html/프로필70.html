@@ -4,103 +4,90 @@
   <head>
     <meta charset = "utf-8">
     <title> 프로필 </title>
-    <style>
-      table{
-        width:70%;
-        border:1px solid #222;
-        border-collapse:collapse;
-      }
-      thead{
-        background:#eee;
-      }
-
-      th,td{
-        border:1px solid #ccc;
-        padding:5px;
-        font-size:0.8em;
-        text-align:center;
-      }
-
-    </style>
+    <link href="/html/css/online_profile.css" rel="stylesheet">
   </head>
 
   <body>
     <!--자기소개-->
-    <a id="top"></a>
-    <img src="img/cat2.jfif" alt="귀여운 고양이" title="귀여워" width="260">
-    <h2>김민서</h2>
-    <p>아자자</p>
-    <h1>SNS</h1>
-    <ul>
-      <li><a href="https:www.daum.net"><img src="img/cat.jfif" alt="다음" width="100"></a></li>
-      <li><a href="https://www.naver.com" target="_blank">Naver</a></li>
-      <li><a href="https://www.google.com" target="_blank">Google</a></li>
-    </ul>
-
-
-    <h1>Who am I?</h1>
-    <p><strong><mark>프론트 엔드 웹 기술(Front-end Web Tech.)</mark></strong>에 관심이 많습니다.
-      <br> 현재 <q>제주</q>의 한 <i>시골 마을</i>에서 코딩 중입니다.</p>
-    <hr>
-
-    <!--경력-->
-    <h3>Experience</h3>
-    <ol type ="A" start = "5">
-      <li> 프론트엔드 개발
+    <section>
+      <article id="profile">
+        <a id="top"></a>
+        <figure>
+          <img src="img/cat2.jfif" alt="귀여운 고양이" title="귀여워" width="260">
+        </figure>
+        <h2>Minseo Kim</h2>
+        <p>아자자</p>
+        <p>Daegu, Korea</p>
+        <p>minseo@naver.com</p>
+        <h1>SNS</h1>
         <ul>
-          <li> 업무 내용 업무 내용 업무 내용</li>
-          <li> 업무 내용</li>
-          <li> 업무 내용 업무 내용</li>
+          <li><a href="https://www.naver.com" target="_blank">Naver</a></li>
+          <li><a href="https://www.google.com" target="_blank">Google</a></li>
         </ul>
-      </li>
+      </article>
+      
+      <article id="who">
+        <h1>Who am I?</h1>
+        <p><strong><mark>프론트 엔드 웹 기술(Front-end Web Tech.)</mark></strong>에 관심이 많습니다.
+        <br> 현재 <q>제주</q>의 한 <i>시골 마을</i>에서 코딩 중입니다.</p>
+        <hr>
+        <!--경력-->
+        <h3>Experience</h3>
+        <ol type ="A" start = "5">
+          <li> 프론트엔드 개발
+            <ul>
+              <li> 업무 내용 업무 내용 업무 내용</li>
+              <li> 업무 내용</li>
+              <li> 업무 내용 업무 내용</li>
+            </ul>
+          </li>
 
-      <li> 웹 디자인
-        <ul>
-          <li> 업무 내용</li>
-          <li> 업무 내용 업무 내용</li>
-        </ul>
-      </li>
-    </ol>
-    <!--바나나 설명-->
-    <dl>
-      <dt>바나나</dt>
-      <dd>노란색 열대 과일입니다.</dd>
-      <dt>딸기</dt>
-      <dd>빨간색 씨가 많은 과일입니다.</dd>
-    </dl>
-    <hr>
-    <!--숙련도-->
-    <h3>Skills</h3>
-    <hr>
-    <!--학력-->
-    <h3>Education</h3>
-    <table border = "1">
-      <caption>학력사항</caption>
-      <thead>
-        <tr>
-          <th>출신학교</th>
-          <th>전공</th>
-          <th>기간</th>
-          <th>구분</th>
-        </tr>
-      </thead>
+          <li> 웹 디자인
+            <ul>
+              <li> 업무 내용</li>
+              <li> 업무 내용 업무 내용</li>
+            </ul>
+          </li>
+        </ol>
 
-     <tbody>
-      <tr>
-        <td>ㅁㅁ대학교</td>
-        <td>컴퓨터공학</td>
-        <td>2004.3 ~ 2008.2</td>
-        <td>졸업</td>
-      </tr>
-      <tr>
-        <td>ㅇㅇㅇ고등학교</td>
-        <td>-</td>
-        <td>2001.3 ~ 2004.2</td>
-        <td>졸업</td>
-      </tr>
-     </tbody>
-    </table>
-    <hr>
-    <p><a href="#top">TOP</a></p>
+        <hr>
+        <!--숙련도-->
+        <h3>Skills</h3>
+        <hr>
+        <!--학력-->
+        <h3>Education</h3>
+        <table border = "1">
+          <caption>학력사항</caption>
+          <thead>
+            <tr>
+              <th>출신학교</th>
+              <th>전공</th>
+              <th>기간</th>
+              <th>구분</th>
+            </tr>
+          </thead>
+
+        <tbody>
+          <tr>
+            <td>ㅁㅁ대학교</td>
+            <td>컴퓨터공학</td>
+            <td>2004.3 ~ 2008.2</td>
+            <td>졸업</td>
+          </tr>
+          <tr>
+            <td>ㅇㅇㅇ고등학교</td>
+            <td>-</td>
+            <td>2001.3 ~ 2004.2</td>
+            <td>졸업</td>
+          </tr>
+        </tbody>
+        </table>
+        <hr>
+        <p><a href="#top">TOP</a></p>
+      </article>
+    </section>
+    
+
+    
   </body>
 </html>

@@ -8,18 +8,22 @@ header{
   padding:10px 0;
 }
 header h1{
+  padding-left: 20px;
   width:300px;
   float:left;
   color:white;
 }
 header nav ul{
-  width:500px;
+  width:600px;
   float:right;
-  padding:10px 0;
+  padding:10px 10px;
   font-weight:bold;
+  text-align:right;
 }
 header nav ul li{
   display:inline-block;
+
+  
   margin: 10px 20px;
 }
 header nav ul li a{

@@ -1,0 +1,30 @@
+body{
+    width:700px;
+    margin : 0 auto;
+}
+fieldset{
+    margin-bottom:20px;
+}
+legend{
+    font-weight:bold;
+    color:blue;
+    font-size:20px;
+}
+li{
+    list-style-type:none;
+    margin-bottom:10px;
+}
+
+#subject label{
+    width:120px;
+    float:left;
+}
+#apply label{
+    width:70px;
+    float:left;
+}
+#button{
+    text-align:center;
+    border:none;
+    margin:10px;
+}

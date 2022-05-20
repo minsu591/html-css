@@ -1,0 +1,42 @@
+body{
+    width:960px;
+    margin:0 auto;
+}
+table{
+    width:70%;
+    border:1px solid #222;
+    border-collapse:collapse;
+}
+thead{
+background:#eee;
+}
+
+th,td{
+border:1px solid #ccc;
+padding:5px;
+font-size:0.8em;
+text-align:center;
+}
+#profile{
+    background-color:gray;
+    width:300px;
+    float:left;
+    height:700px;
+}
+#profile figure{
+    width:300px;
+    text-align:center;
+    margin: 10px auto;
+}
+#profile li{
+    list-style-type:none;
+    display:inline-block;
+    margin-right : 20px;
+}
+#profile li a{
+    text-decoration: none;
+}
+#who{
+    width:600px;
+    float:right;
+}

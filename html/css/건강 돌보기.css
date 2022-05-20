@@ -11,8 +11,10 @@ header h1{
   color:white;
   float:left;
   margin-left:10px;
+  width:300px;
 }
 header nav{
+  width:600px;
   float : right;
   margin:15px 0;
 }

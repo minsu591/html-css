@@ -6,34 +6,40 @@ header{
     text-align:center;
     padding-right:2%;
 }
-nav ul{
+nav{
+    width:1000px;
     background-color:black;
-    color:white;
-
+    height:40px;
+    
+}
+nav ul{
+    overflow:hidden;
+    padding:10px;
 }
 nav ul li{
     list-style-type: none;
-    display:inline-block;
     margin-right:20px;
+    width:120px;
     float:left;
+    height:20px; 
 }
-nav > ul > li > #loginmenu{
-    width:60px;
-    float:right;
+nav ul li a{
+    color:white;
 }
+
 #loginmenu{
     float:right;
+    text-align:right;
 }
-nav ul{
-    width:1000px;
-}
+
 #loginmenu{
     float:right;
 }
 
-#c{
-    clear:both;
+#loginmenu{
+    float:right;
 }
+
 a{
     text-decoration: none;
 }
@@ -61,17 +67,25 @@ section label{
     font-size:90%;
     float:left;
 }
+aside{
+    text-align:center;
+}
 #left{
     width:20%;
     height:800px;
     float:left;
     background-color:#e6e6e6;
+    margin:0;
 }
 section{
     height:800px;
     width:60%;
     float:left;
     text-align:center;
+}
+section li label{
+    width:120px;
+    padding:2px;
 }
 form{
     background-color:gray;
@@ -100,4 +114,8 @@ fieldset{
 }
 footer{
     clear:both;
+    text-align:center;
+    background-color:black;
+    color:white;
+    padding:20px;
 }

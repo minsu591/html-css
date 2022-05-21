@@ -1,0 +1,119 @@
+body{
+    background-color: rgb(236, 229, 229);
+    box-sizing:border-box;
+    width:95%;
+    margin: 0 auto;
+}
+
+header{
+    background-color: white;
+    text-align:center;
+    padding:2%;
+    margin-bottom:5%;
+}
+header nav{
+    background-color:gray;
+    color:white;
+    overflow:hidden;
+    height:5%;
+}
+header nav ul{
+    line-height:40px;
+    margin: 0;
+}
+header nav ul li{
+    list-style-type:none;
+    float:left;
+    margin-right:3%;
+}
+header nav ul li a{
+    text-decoration: none;
+    color:white;
+}
+#linkright{
+    float:right;
+    text-align:right;
+}
+
+section{
+    background-color: white;
+    padding:0 2%;
+    width:65%;
+    float:left;
+}
+section legend{
+    padding-top:5%;
+    font-size:large;
+    font-weight:bold;
+}
+section table{
+    width:95%;
+    border: 1px solid rgb(187, 186, 186);
+    border-collapse:collapse;
+    margin:4% 0;
+}
+section table th, td{
+    padding:2% 1%;
+    border : 1px solid rgb(187, 186, 186);
+}
+section table th{
+    width:30%;
+    text-align:left;
+}
+#buttonright{
+    float:right;
+}
+.inputsize{
+    width:95%;
+    height:20px;
+}
+section textarea{
+    width:95%;
+    height:50%;
+}
+
+
+aside{
+    float:right;
+    width:30%;
+    height:100%;
+    margin:0;
+    padding: 0
+}
+aside h3{
+    margin:5% 0;
+}
+aside div{
+    background-color:white;
+    margin-bottom:10px;
+    padding: 20px;
+}
+aside div:first-of-type{
+    height:30%;
+}
+aside div:nth-of-type(2){
+    height:40%;
+}
+.imagedeco{
+    background-color: gray;
+    padding:5%;
+    margin:0;
+}
+.hot::after{
+    content:"NEW!";
+    width:10%;
+    height:10%;
+    background-color:red;
+    color:white;
+    padding:1%;
+    border-radius:20%;
+    position:relative;
+    top:-20px;
+}
+
+footer{
+    clear:both;
+    background-color: gray;
+    text-align:center;
+    padding:2% 0;
+}

@@ -4,6 +4,52 @@
     <meta charset="utf-8">
     <title>강아지 용품</title>
     <link href="/html/css/강아지용품.css" rel="stylesheet">
+    <style>
+      nav a:link{
+        color:green;
+      }
+      nav a:visited{
+        color:yellow;
+        font-weight:400;
+        padding:10px;
+      }
+      nav li:hover{
+        border-bottom:2px solid white;
+        padding-bottom:8px;
+        font-style:italic;
+      }
+      nav a:active{
+        color:blueviolet;
+        background-color:white;
+      }
+      
+      section:first-of-type article:first-of-type:hover{
+        background-color:blue;
+        color:white;
+      }
+
+      h1.hot::after{
+        content:"NEW!!";
+        font-size:x-small;
+        padding: 2px 8px;
+        margin : 0 10px;
+        border-radius:2px;
+        background-color:red;
+        position:relative;
+        top:-20px;
+        color:white;
+      }
+      p::selection{
+        background: blueviolet;
+        color:white;
+      }
+      p:not(footer p):first-letter{
+        color:blue;
+        font-size:larger;
+      }
+      
+      
+    </style>
 
   </head>
   <body>
@@ -19,7 +65,7 @@
     </header>
 
     <section>
-      <h1>강아지 용품 준비하기</h1>
+      <h1 class="hot">강아지 용품 준비하기</h1>
       <article id = "house">
         <h3>강아지 집</h3>
         <p>강아지가 편히 쉴 수 있는 포근한 집이 필요합니다. 

@@ -1,0 +1,45 @@
+#container{
+    width:80%;
+    margin:0 auto;
+}
+section > ul > li{
+    list-style:none;
+    float:left;
+    margin-right:10px;
+    position:relative;
+    overflow:hidden;
+    
+}
+img{
+    width:300px;
+    height:200px;
+}
+.caption{
+    background-color: rgba(0,0,0,0.6);
+    opacity:0;
+    width:300px;
+    height:200px;
+    position:absolute;
+    top:200px;
+    z-index:10;
+    padding: 0;
+}
+.caption li{
+    list-style:none;
+    text-align:center;
+    padding:10px;
+}
+
+.caption li:first-of-type{
+    font-size:25px;
+    font-weight:bold;
+    padding:30px 0;
+}
+/*li에 마우스를 올리면 .caption이~*/
+ul li:hover .caption{
+    opacity:1;
+    /*내 현재 위치보다 위로 200 올라감*/
+    transform:translateY(-200px);
+    color:#fff;
+    text-align:center;
+}

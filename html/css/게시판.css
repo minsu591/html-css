@@ -34,6 +34,12 @@ header nav ul li a{
     float:right;
     text-align:right;
 }
+nav:hover{
+    background-color:black;
+}
+header nav ul li:hover{
+    background-color:pink;
+}
 
 section{
     background-color: white;

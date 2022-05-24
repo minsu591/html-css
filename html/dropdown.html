@@ -10,8 +10,20 @@
             list-style-type:none;
             display:none;
         }
-        ul:hover li{
+        #topul:hover >li:nth-of-type(1){
             display:block;
+            position:absolute;
+            top:20px;
+        }
+        body>ul:hover >li:nth-of-type(2){
+            display:block;
+            position:absolute;
+            top:40px;
+        }
+        #topul:hover >li:nth-of-type(3){
+            display:block;
+            position:absolute;
+            top:60px;
         }
         a:hover{
             background-color:black;
@@ -26,12 +38,15 @@
         #list:hover{
             background-color: gray;
         }
+        body > ul{
+            position:relative;
+        }
         
         
     </style>
 </head>
 <body>
-    <ul>
+    <ul id="topul">
         <a>dropdown</a>
         <li id="list">list
             <ul>
@@ -55,6 +70,8 @@
             </ul>
         </li>
     </ul>
+    <p>하잉</p>
+    <img src="/html/img/cat.jfif">
     
 </body>
 </html>

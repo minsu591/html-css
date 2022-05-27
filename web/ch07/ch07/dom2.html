@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ch07/dom2.html</title>
+    <script src="dom2Script.js"></script>
+</head>
+<body>
+    <form name = "frm" action="dom1.html" onsubmit="" >
+        first_name : <input type="text" name="fname" value="길동"><br>
+        last_name : <input type="text" name="lname" value="홍"><br>
+        phone : <input type="tel" name="phone" value="010-2222-3333"><br>
+        age : <input type="number" name="age" value="23"><br>
+        <input type="submit" value="저장">
+        <input type="button" value="선택삭제">
+    </form>
+    <hr>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>선택</th>
+                <th>first_name</th>
+                <th>last_name</th>
+                <th>phone</th>
+                <th>age</th>
+                <th>삭제</th>
+            </tr>
+        </thead>
+        <tbody id="list">
+            <tr>
+                
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

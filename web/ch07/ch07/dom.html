@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ch07/dom.html</title>
+    <script>
+        document.addEventListener('DOMContentLoaded',function(){
+            //newfriends의 리스트를 생성하면서
+            let friends = ['송도언','소진영','우영원'];
+            let newUl = document.querySelector('#newfriends');
+            friends.forEach(friend =>{
+                let li = document.createElement('li');
+
+                li.addEventListener('click',function(){
+                    console.log(this); //event 내의 this : 이벤트를 받는 대상을 return해줌
+                     //this의 style 중 background 색을 노랑으로
+                    if(this.style.background=='yellow'){
+                        this.style.background = 'white';
+                    }else{
+                        this.style.background = 'yellow';
+                    }
+                })
+
+                //mouseover : 해당 li 위에 마우스가 올라가면 이벤트발생
+                li.addEventListener('mouseover',function(){
+                    this.style.background='blue';
+                })
+                //mouseout : 마우스가 내려가면 이벤트 발생
+                li.addEventListener('mouseout',function(){
+                    this.style.background=null;
+                })
+
+                //버튼 생성
+                let btn = document.createElement('button');
+                btn.innerText='삭제';
+                btn.addEventListener('click',function(){
+                    this.parentElement.remove(); //this :버튼 태그의 부모요소를 삭제
+                    
+                })
+                // li.innerHTML=friend;
+                li.appendChild(document.createTextNode(friend));
+                li.appendChild(btn);
+                newUl.appendChild(li); //newUl에 li를 넣기전에 전부 꾸며놓을 것
+            });
+
+            //기존 friends의 li를 바꾸기
+            let bul = document.querySelector('#friends').children;
+            console.log(bul);
+            let basicUl =document.querySelectorAll('#friends'); //안의 요소 전부 가져오는
+            console.log('basic' +basicUl);
+            for(let i = 0; i<bul.length;i++){
+                console.log(bul[i]);
+                bul[i].addEventListener('click',function(){
+                    if(this.style.background=='yellow'){
+                        this.style.background = null;
+                    }else{
+                        this.style.background='yellow';
+                    }
+                })
+                
+            }
+            
+
+        })
+    </script>
+</head>
+<body>
+    <ul id ="friends">
+        <li class = "animal">라이언</li>
+        <li class ="fruit">어피치</li>
+        <li class="animal">프로도</li>
+        <li class = "alien">콘
+            <ul class = 'keyword'>
+                <li>3세</li>
+                <li>숏다리</li>
+                <li>초록괴수</li>
+            </ul>
+        </li>
+    </ul>
+    <ul class = "icons">
+        <li>
+            <span>스몰</span>
+            <span>미디엄</span>
+            <span>빅</span>
+        </li>
+    </ul>
+    <ul id="newfriends">
+    </ul>
+    
+</body>
+</html>

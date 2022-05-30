@@ -14,6 +14,7 @@
     last_name : <input type="text" name="lname" value="홍"><br>
     phone : <input type="text" name="phone" value="010-5151-1212"><br>
     age : <input type="number" name="age" value="22"><br>
+    <input type = "hidden" name="member_id" value=""> <!--member_id를 hidden 속성으로 담아두기-->
     <input type="submit" value="저장">
     <input type="button" id ="deleteBtn" value="선택삭제">
     <input type="button" id="changeBtn" value="변경">
@@ -36,22 +37,31 @@
   </table>
 
   <script>
+    //member_id를 위한 sequence
+    var memSequence = function(){
+      var num =0;
+      return function(){
+        return ++num;
+      }
+    };
+    var seq = memSequence();
+
     // 리스트 출력.
     let memberList = [{
-        member_id : 1,
+        member_id :  seq(),
         first_name: '임경',
         last_name: '정',
         phone: '010-1111-2222',
         age: 20
       }, {
-        member_id : 2,
+        member_id : seq(),
         first_name: '근형',
         last_name: '박',
         phone: '010-3333-4444',
         age: 21
       },
       {
-        member_id : 3,
+        member_id : seq(),
         first_name: '진형',
         last_name: '김',
         phone: '010-5555-6666',
@@ -81,20 +91,23 @@
     }
 
     document.querySelector('#changeBtn').addEventListener('click',function(){
-      for()
-      if()
-      document.forms.frm.member_id.value
+      //#list의 값 불러오기
+      let key =document.forms.frm.member_id.value; //forms의 member_id를 불러옴
+      let tr = document.getElementById('member_'+key); //member_key값을 통해 id를 저장해둔 tr을 가져옴
+      tr.children[4].innerHTML=document.forms.frm.phone.value;
+      tr.children[5].innerHTML=document.forms.frm.age.value;
     })
 
     // 입력추가.
     document.forms.frm.onsubmit = function (ev) {
       ev.preventDefault();
       // 사용자 입력값.
+      let mi = seq();
       let fn = this.fname.value;
       let ln = this.lname.value;
       let pn = this.phone.value;
       let ag = this.age.value;
-      let inValues = [fn, ln, pn, ag];
+      let inValues = [mi,fn, ln, pn, ag];
       // tr생성하는 함수 호출.
       makeRow(inValues);
     }
@@ -106,6 +119,7 @@
       tr.setAttribute('id','member_'+inValues[0]);
       tr.addEventListener('click',function(){ //tr클릭 이벤트가 생성되면
         //tr아래로 td들
+        document.forms.frm.member_id.value = tr.children[1].innerHTML;
         document.forms.frm.fname.value=tr.children[2].innerHTML;
         document.forms.frm.lname.value=tr.children[3].innerHTML;
         document.forms.frm.phone.value=tr.children[4].innerHTML;

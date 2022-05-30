@@ -80,6 +80,7 @@ document.addEventListener('DOMContentLoaded',function(){
         }
     ];
     let baseList = document.getElementById('list');
+    let inTr = document.querySelector('table>tbody>tr');
     memberList.forEach(function(val){
         let list = [];
         list.push(val.first_name);
@@ -112,6 +113,7 @@ document.addEventListener('DOMContentLoaded',function(){
                 td.appendChild(button);
                 tr.appendChild(td);
             }
+            document.getElementById('list').append(tr);
         })
     });
 

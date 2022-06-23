@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .red{ color : red;}
+        .blue{color :blue;}
+
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Cities</h1>
+        <ul>
+            <li id="one" class="red">Seoul</li>
+            <li id="two" class="blue">London</li>
+            <li id="three" class="red">NewYork</li>
+            <li id="four">Tokyo</li>
+        </ul>
+    </div>
+    <script>
+        changeWithTag();
+        function changeWithId(){
+            // blue인건 red로 red인건 blue로
+            //1. id로 요소를 검색해서 가져오기
+            let idTag = document.getElementById('one');
+            idTag.className='blue';
+            idTag = document.getElementById('two');
+            idTag.className='blue';
+            idTag = document.getElementById('three');
+            idTag.className='blue';
+        }
+        
+        function changeWithTag(){
+            //2. li를 모두 가져오기
+            let lis = document.getElementsByTagName('li');
+            console.log(lis);
+            Array.from(lis).forEach(e => {
+                if(e.className=='blue'){
+                    e.className='red';
+                }else if(e.className='red'){
+                    e.className='blue';
+                }
+            })
+            
+            
+        }
+        
+        //3. 클래스 name
+        //4. cssSelector
+
+    </script>
+</body>
+</html>

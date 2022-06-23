@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <form id="frm">
+        <div id="info">
+            <div>
+                <label for="user_name">이름</label>
+                <input type="text" id="user_name" name="user_name">
+            </div>
+            <div>
+                <label for="user_dept">소속</label>
+                <select name="user_dept" id="user_dept">
+                    <option value="student">학생</option>
+                    <option value="teacher">교수</option>
+                </select>
+            </div>
+            <div>
+                <label for="user_hobby">취미</label>
+                <input type="checkbox" name="user_hobby" value="bicycle">자전거 타기
+                <input type="checkbox" name="user_hobby" value="reading">독서
+                <input type="checkbox" name="user_hobby" value="walking">산책
+                <input type="checkbox" name="user_hobby" value="watching">영화시청
+            </div>
+        </div>
+        <button type="button">입력</button>
+    </form>
+
+    <div id="show">
+        <table style="border:1px solid black;">
+            <thead>
+                <th>이름</th>
+                <th>소속</th>
+                <th>취미1</th>
+                <th>취미2</th>
+                <th>취미3</th>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        
+    </div>
+
+    <script>
+        // trWithJs();
+        //js로 하기
+        $('button').on('click',function(){
+            trWithJquery();
+        });
+
+        function trWithJs(){
+            let tr = document.createElement('tr');
+            let td = document.createElement('td');
+            //이름
+            td.innerText=document.getElementById('user_name').value;
+            tr.append(td);
+            //소속
+            td= document.createElement('td');
+            if(document.getElementById('user_dept').value=='student'){
+                td.innerText='학생';
+            }else{
+                td.innerText='교수';
+            }
+            tr.append(td);
+
+            //취미
+            let cbs = document.querySelectorAll('input[name="user_hobby"]');
+            for(let i = 0; i<cbs.length;i++){
+                if(cbs[i].checked){
+                    td= document.createElement('td');
+                    td.innerText=cbs[i].value;
+                    tr.append(td);
+                }
+            }
+            document.getElementsByTagName('tbody')[0].append(tr);
+        }
+
+        function trWithJquery(){
+            let name = $('#user_name').val();
+            let dept = $('#user_dept :selected').text();
+            let hobbies = $('#info >div:last :checked');
+            let tr = $('<tr/>');
+
+            //이름
+            let td = $('<td/>');
+            td.text(name);
+            tr.append(td);
+            //소속
+            //체크된 값의 text를 가져옴
+            td = $('<td/>');
+            td.text(dept);
+            tr.append(td);
+            
+            $.each(hobbies,function(idx,e){
+                if(idx<3){
+                    td = $('<td/>');
+                    td.text(e.value);
+                    tr.append(td);
+                }
+            })
+            $('tbody').append(tr);
+            
+
+        }
+
+    </script>
+</body>
+</html>

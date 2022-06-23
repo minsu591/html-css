@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <!--부모, 하위 요소 선택자-->
+    <script>
+        //가지고 오고싶은 태그보다 script가 위에 있을 떄
+        $(document).ready(function(){
+            //선택한거 옆에 선택
+            let n = $('h2').next();
+            //부모 선택자
+            $('#inner_wrap').parent().css('border','1px solid black');
+
+            //하위 요소 선택자
+            //하위 요소 전부를 선택
+            $('#wrap h1,h2').css('color','blue');
+
+            //자식 요소 선택자
+            $('#wrap > h1').text('자식 요소로 선택');
+            let divCs= $('div').children('h1 h2');
+        });
+    </script>
+    <div id="wrap">
+        <h1>타이틀</h1>
+        <div id="inner_wrap">
+            <h1>제목1</h1>
+            <h2>제목2</h2>
+            <h3>제목3</h3>
+            <p>내용</p>
+            <div>
+                <h1>하위요소1</h1>
+                <h2>하위요소2</h2>
+            </div>
+        </div>
+    </div>
+
+    <!--이전, 다음 요소 선택자(형제) (next, prev)-->
+    <script>
+        //이렇게도 쓸 수 있는데, 코드만 보면 명확히 무슨 작동을 하는지 알 수 없어서 잘 안씀
+        $(function(){
+            //형(이전) 요소 선택자 - 자신의 이전에 있는 요소
+            //.prev : 한 건만 반환함 ****
+            let pre = $('.text').prev().css('background-color','#0ff').css('border','2px solid #000');
+            $('.text').prevAll().text('하잉');
+
+            //동생(다음) 요소 선택자
+            let next = $('.text').next().text('메롱');
+            $('.text').nextAll().text('다음요소들');
+            $('.text + span').text('선택');
+
+            //범위제한 : ~Until -> 선택한거 앞까지 (괄호 안에 넣은거는 포함되지 않음)
+            $('.text').prevUntil('h1').css('border','10px dotted green');
+            $('.text').nextUntil('span').css('border','10px dotted red');
+        });
+    </script>
+    <div id="content">
+        <h1>인접 관계 선택자</h1>
+        <p>내용1</p>
+        <p class="text">내용2</p>
+        <p>내용3</p>
+        <p>내용4</p>
+        <span></span>
+    </div>
+    <hr>
+    <!--상위, 하위 요소 선택자 (parents)-->
+    <script>
+        $(document).ready(function(){
+            //상위 요소 선택자 (본인을 감싸고 있는 모든 요소)
+            //body까지 갈 수 있으니까 태그를 선택해주는게 좋음
+            $('.txt2').parents('div, section').css('border','2px solid yellow');
+            //가장 가까운 상위 요소 선택자 : closest
+            $('.txt1').closest('div').css('border','1px solid green');
+            //전체 형제 요소 선택자 (위치 관계없이 내 위치와 동급의 요소를 전부 가져옴)
+            $('.title').siblings().css('background-color','gray');
+        });
+    </script>
+    <div>
+        <h1 class="title">선택자</h1>
+        <section>
+            <div>
+                <p class="txt1">내용1</p>
+            </div>
+        </section>
+        <section>
+            <div>
+                <p class="txt2">내용2</p>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

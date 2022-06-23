@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        //위치에 관계없이 html을 다 실행한 후 함수 실행
+        //1. addEventListener이용
+        document.addEventListener('DOMContentLoaded',function(){
+            
+        });
+
+        //2. jQuery 이용
+        $(document).ready(function(){
+            //jQuery와 기본 기능을 혼합해서 사용가능
+           let h1Tag = document.getElementsByTagName('h1')[0];
+            $(h1Tag).css('color','pink');
+
+            //html 내의 모든 태그에 대해 접근
+            $("*").css('border','1px solid blue');
+
+            //아이디 선택자
+            $("#mid").css('background-color','gray').css('border','2px solid black').css('color','white');
+
+            //클래스 선택자
+            //클래스는 기본적으로 배열
+            let classTags = $('.blue').css('background-color','blue').css('border','3px solid blue').css('color','white');
+            for(let i =0;i<classTags.length;i++){
+                console.log(classTags[i].textContent);
+                classTags[i].textContent = i;
+            }
+
+            //가져온 값에 대해 동일한 값을 적용하고 싶다면
+            $('.blue').text('중복');
+
+            //태그 선택자
+            $('h1').css('color','pink');
+            $('h3').text('직접 선택자로 다시 변경');
+
+            //그룹 선택자
+            $('#mid,.blue,h4').css('color','yellow');
+
+            //종속 선택자
+            //h1 태그 안의 아이디값, 클래스값 등 범위를 좁힐 수 있는 선택자
+            //태그+아이디, 태그+클래스
+            //공백이 있으면 안됨
+            $('h1.blue').text('종속 선택자로 선택');
+            $('h2#mid').text('메메메');
+        })
+    </script>
+    <h1 class="blue">제이쿼리</h1>
+    <h1>메롱</h1>
+    <h2 id="mid">선택자</h2>
+    <h2>롱롱</h2>
+    <h3 class="blue">직접 선택자</h3>
+    <h4>그룹 선택자</h4>
+</body>
+</html>

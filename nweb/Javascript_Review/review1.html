@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Document</title>
+    </head>
+    <body>
+        <ul>
+            <li id="apple">Apple</li>
+            <li id="banana">Banana</li>
+            <li id="orange">Orange</li>
+        </ul>
+        <ul>
+
+        </ul>
+        <script>
+            let ulTag = document.getElementsByTagName('ul')[0];
+            let liTag = document.createElement('li');
+            liTag.innerHTML='Strawberry';
+            liTag.setAttribute('id','strawberry');
+            ulTag.appendChild(liTag);
+            
+        </script>
+    </body>
+</html>

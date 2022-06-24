@@ -1,0 +1,76 @@
+<!--220624-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <script>
+        $(document).ready(function(){
+            //태그가 가지고 있는 텍스트를 검색
+            //선택한 요소의 하위 요소 내부까지 검색함
+            let par = $('#inner_1 p:contains("내용2")').css('background-color','skyblue');
+
+            //검색하고자 하는 태그를 포함하는 태그를 선별
+            //여기서 검색해서 반환되는건 strong태그가 포함된p태그
+            let has = $('#inner_1 p:has(strong)').text();
+            console.log(has);
+
+            //검색조건 중 제외하고자 하는 것을 지정 -> not()
+            //첫번째가 아닌 것만
+            $('#inner_2 p:not(:first)').css('background-color','green');
+            $('#inner_2 p').not(':last').css('color','red');
+        });
+    </script>
+    <div id="outer_wrap">
+        <h1>콘텐츠 탐색 선택자</h1>
+        <section id="inner_1">
+            <h1>contains(), has()</h1>
+            <p><strong><span>내용1</span></strong></p>
+            <p><span>내용2</span></p>
+            <p><span>내용3</span></p>
+        </section>
+        <section id="inner_2">'
+            <h1>not()</h1>
+            <p>내용4</p>
+            <p>내용5</p>
+            <p>내용6</p>
+        </section>
+    </div>
+    <hr>
+    <script>
+        $('document').ready(function(){
+            //find() -> 하위 요소 중에서 검색
+            //조건 : 클래스 및 아이디
+            $('#in_1').find('.txt1').css('background-color','pink');
+            //filter() -> 선택한 요소 중에서 검색
+            $('#in_1 p').filter('.txt2').css('color','red');
+            //조건을 줄 때 function을 이용할 수 있음
+            $('#in_2 p').filter(function(idx, obj){
+                console.log(idx,obj);
+                return idx %2 ==0;
+            }).css('background-color','blue').css('color','white');
+
+        });
+    </script>
+    <div id="outer_content">
+        <h1>콘텐츠 탐색 선택자</h1>
+        <section id="in_1">
+            <h2>find(), filter()</h2>
+            <p class="txt1">내용1</p>
+            <p class="txt2">내용2</p>
+        </section>
+        <section id="in_2">
+            <h2>filter(function)</h2>
+            <p> index 0</p>
+            <p> index 1</p>
+            <p> index 2</p>
+            <p> index 3</p>
+        </section>
+    </div>
+</body>
+</html>

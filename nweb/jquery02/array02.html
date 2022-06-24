@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        .aqua{
+            background-color: aqua;
+        }
+        .red{
+            background-color: red;
+        }
+        .green{
+            background-color: green;
+        }
+        .yellow{
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        $(document).ready(function(){
+            //html() -> 태그의 모든 하위요소를 가져와서 문자열로 반환
+            //안의 내용을 전부 지우고 재구성하고 싶으면 html 사용
+            let result1 = $('#sec_1').html();
+            console.log(result1);
+            let result2 = $('#sec_1 p').html('<a href="#">Text1</a>');
+
+            //text() -> 태그의 text를 반환
+            let result3 = $('#sec_2').text();
+            console.log(result3);
+            $('#sec_2 h2 em').text('변경');
+        });
+    </script>
+    <div id="ex01">
+        <h1>
+            <strong>객체 조작 및 생성</strong>
+        </h1>
+        <section id="sec_1">
+            <h2>
+                <em>html()</em>
+            </h2>
+            <p>내용1</p>
+        </section>
+        <section id="sec_2">
+            <h2>
+                <em>text()</em>
+            </h2>
+            <p>내용2</p>
+        </section>
+    </div>
+    <hr>
+    <hr>
+    <script>
+        $(document).ready(function(){
+            //Class은 여러개 가질 수 있기 때문에
+            //addClass() -> class 속성에 지정한 값을 추가
+            $('#p1').addClass('aqua');
+            //removeClass() -> class 속성 중에서 해당 속성을 삭제
+            $('#p2').removeClass('red');
+            //toggleClass() -> 현재 해당 클래스가 있으면 추가, 없으면 삭제
+            $('#p3').toggleClass('green');
+            $('#p4').toggleClass('green');
+
+            //hasClass() -> class 속성 중에 해당 속성의 여부 확인 (true, false)
+            $('#p6').text($('#p5').hasClass('yellow'))
+        })
+
+    </script>
+    <div id="ex02">
+        <p id="p1">내용1</p>
+        <p id="p2" class="red">내용2</p>
+        <p id="p3">내용3</p>
+        <p id="p4" class="green">내용4</p>
+        <p id="p5" class="yellow">내용5</p>
+        <p id="p6"></p>
+    </div>
+
+
+    <script>
+        $(document).ready(function(){
+            //attr() -> html의 attribute를 조작
+            // let var1 = $('#sec01 img').attr('src');
+            // console.log(var1);
+
+            // $('#sec01 img').attr('width',200);
+
+            // $('#sec01 img').attr({
+            //     "alt":"카드",
+            //     "height":'200'
+            // })
+            // $('#sec01 img').removeAttr('src');
+
+            //prop() -> DOM property
+            //현재 적용된 속성을 가지고 옴
+            let var1 = $('#sec01 img').prop('src');
+
+            $('#sec01 img ').prop('width',200);
+            // $('#sec01 img').removeProp('src');
+            
+            //attr : 쓰여있는 그대로
+            console.log('attr : ',$('#get_comment').attr('href'));
+            //prop : 실제 페이지 주소
+            console.log('prop : ',$('#get_comment').prop('href'));
+        });
+        
+    </script>
+    <div id="ex03">
+        <h1>
+            <strong>객체 조작 및 생성</strong>
+        </h1>
+        <section id="sec01">
+            <h2>
+                <img src="dog.jpg" alt="이미지" border="2">
+            </h2>
+        </section>
+        <a id="get_comment" href="#comments">코멘트</a>
+    </div>
+    <hr><hr>
+    <script>
+        $(document).ready(function(){
+            //prop에서 checked 속성을 가져오고 싶으면 checked라고 선언해야됨
+            // $('#chk2').prop('checked',false);
+            $('input:checkbox').change('on',function(){
+                //prop은 기존에 checked 속성이 설정된 적이 없어도 상태에 따라 true, false를 출력하지만
+                let checkVal = $('#chk3').prop('checked');
+                console.log(checkVal);
+                //attr는 기존에 checked 속성이 설정된 적 없으면 안됨.
+                $('#chk3').prop('checked',false);
+                console.log($('#chk3').attr('checked'))
+            })
+            
+        })
+    </script>
+    <div id="ex04">
+        <form action="#" id="form_1">
+            <div>
+                <label for="chk1">체크1</label>
+                <input type="checkbox" name="chk1" id="chk1">
+                <label for="chk2">체크2</label>
+                <input type="checkbox" name="chk2" id="chk2" checked>
+                <label for="chk3">체크3</label>
+                <input type="checkbox" name="chk3" id="chk3">
+            </div>
+            <div>
+                <select name="select_1" id="select_1">
+                    <option value="opt1">옵션1</option>
+                    <option value="opt2">옵션2</option>
+                    <option value="opt3" selected>옵션3</option>
+                </select>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

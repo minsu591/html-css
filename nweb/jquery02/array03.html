@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        .red{
+            color: red;
+        }
+
+        #ex05 div{background-color: greenyellow;}
+    </style>
+</head>
+<body>
+    <script>
+        $(document).ready(function(){
+            //before(), insertBefore() -> 지정한 태그 이전에 새 태그를 추가
+            //insertBefore는 함수 전달이 안됨
+            $('#ex01 p:eq(1)').before('<p>Before</p>');
+            $('<p id="test">insertBefore</p>').insertBefore('#ex01 p:eq(0)');
+
+            //after(), insertAfter() -> 지정한 태그 다음에 새 태그를 추가
+            $('#ex01 p:last').after('<p>After</p>');
+            $('<p>insertAfter</p>').insertAfter('#ex01 p:eq(1)');
+
+        })
+    </script>
+    <div id="ex01">
+        <p>내용1</p>
+        <p>내용2</p>
+        <p>내용3</p>
+    </div>
+    <script>
+        $(function(){
+            //append(), appendTo() -> 맨 마지막 추가 (같은 기능하는데 문법적 차이)
+            $('#listZone').append('<li>append</li>');
+            $('<li>appendTo()</li>').appendTo('#listZone');
+            //prepend(), prependTo() -> 맨 앞에 추가 // 바로 앞에 추가
+            $('#listZone').prepend('<li>prepend()</li>');
+            $('<li>prependTo()</li>').prependTo('#listZone');
+        })
+    </script>
+    <div id="ex02">
+        <ul id="listZone">
+            <li>리스트</li>
+        </ul>
+    </div>
+    
+    <hr><hr>
+    <script>
+        $(function(){
+            //clone() -> 태그 복사
+            let copyObj = $('#ex03 .box1').children().clone();
+            $('#ex03 .box3').append(copyObj);
+            console.log(copyObj);
+            //empty() -> 태그의 하위 요소를 삭제 (대상이 되는 요소는 남아있음)
+            $('#ex03 .box3').empty();
+            //remove() -> 태그 삭제 (대상도 삭제)
+            $('#ex03 .box3').remove();
+        })
+    </script>
+    <div id="ex03">
+        <div class="box1">
+            <p>내용1</p>
+            <p>내용2</p>
+        </div>
+        <div class="box2">
+            <p>내용3</p>
+            <p>내용4</p>
+        </div>
+        <div class="box3">
+            <p>내용5</p>
+            <p>내용6</p>
+        </div>
+    </div>
+
+    <hr><hr>
+    <script>
+        $(function(){
+            //기존 태그 중 지정한 태그를 원하는 태그로 대체
+            //replaceAll()
+            $('<p>Change</p>').replaceAll('.box1 div');
+            //replaceWith()
+            $('#ex04 h2').replaceWith('<p>Change With</p>')
+        })
+    </script>
+    <div id="ex04">
+        <section class="box1">
+            <h2>제목1</h2>
+            <div>내용1</div>
+            <div>내용2</div>
+        </section>
+        <section class="box2">
+            <h2>제목2</h2>
+            <div>내용3</div>
+            <div>내용4</div>
+        </section>
+    </div>
+    <hr><hr>
+    <script>
+        $(function(){
+            //unwrap() ->선택한 태그의 부모 태그를 삭제
+            $('#ex05 strong').unwrap();
+            //wrap() -> 선택한 태그를 개별로 감싸는 태그를 추가
+            $('#ex05 .ct1').wrap('<div  class="red"/>')
+            //wrapAll() -> 선택한 태그를 한꺼번에 감싸는 태그를 추가
+            $('#ex05 .ct2').wrapAll('<div/>');
+            //wrapInner() -> 선택한 태그의 모든 하위 요소를 감싸는 태그를 추가
+            $('#ex05 li').wrapInner('<h3/>');
+        })
+    </script>
+    <div id="ex05">
+        <h1 id="tit_1">
+            <strong>제목</strong>
+        </h1>
+        <p class="ct1">내용1</p>
+        <p class="ct1">내용2</p>
+        <p class="ct2">내용3</p>
+        <p class="ct2">내용4</p>
+        <ul>
+            <li>내용3</li>
+            <li>내용4</li>
+        </ul>
+    </div>
+</body>
+</html>

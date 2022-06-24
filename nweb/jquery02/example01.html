@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <script>
+        $(function(){
+            $('.wrap_1 p:contains("텍스트1")').text('내용1');
+            $('.wrap_1 a:contains("네이버")').attr('href','https://www.naver.com');
+            $('.wrap_1 input').val('Korea');
+            let p = $('.wrap_2 p:contains("내용5")');
+            p.before($('<p>Before(추가2)</p>'));
+            p.after($('<p>After(추가1)</p>'));
+            //p 감싼 div 삭제
+            $('.wrap_3 p').unwrap();
+            //p를 굵게하기
+            $('.wrap_3 p').wrapInner($('<strong/>'));
+
+        })
+    </script>
+    <div class="wrap_1">
+        <p>텍스트1</p>
+        <p class="active">내용2</p>
+        <p><a href="#">네이버</a></p>
+        <p>
+            <input type="text" value="Hello">
+        </p>
+    </div>
+    <div class="wrap_2">
+        <p>내용5</p>
+        <p>내용6</p>
+    </div>
+    <div class="wrap_3">
+        <div>
+            <p>내용7</p>
+            <p>내용8</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -10,15 +10,25 @@
 <body>
     <script>
         $(function(){
+            //.wrap_1
             $('.wrap_1 p:contains("텍스트1")').text('내용1');
+            //$('.wrap_1 p:first').text('내용1');
+            $('.wrap_1 p.active').removeClass('active').addClass('on');
             $('.wrap_1 a:contains("네이버")').attr('href','https://www.naver.com');
+            //$('.wrap_1 p:eq(2) a').attr('href','https://www.naver.com');
             $('.wrap_1 input').val('Korea');
+            //input 타입까지 지정
+            //$('.wrap_1 p:eq(3) input:text').val('Korea');
+
+            //.wrap_2
             let p = $('.wrap_2 p:contains("내용5")');
             p.before($('<p>Before(추가2)</p>'));
+            //$('<p>Before(추가2)</p>').insertBefore('.wrap_2 p:first');
             p.after($('<p>After(추가1)</p>'));
-            //p 감싼 div 삭제
+            //$('<p>After(추가1)</p>').insertAfter('.wrap_2 p:first');
+
+            //.wrap_3
             $('.wrap_3 p').unwrap();
-            //p를 굵게하기
             $('.wrap_3 p').wrapInner($('<strong/>'));
 
         })

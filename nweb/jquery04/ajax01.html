@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <script>
+        $(function(){
+            /*
+            $.ajax({
+                //접속할 주소
+                url :'' ,
+                //통신 방법, default는 get
+                type:'POST',
+                //전송할 데이터
+                data:'',
+                //전송할 데이터의 content-type, default는 application/x-www-form-urlencoded
+                contentType:'',
+                //리턴되는 데이터 타입
+                dataType:'',
+                //전송이 성공했을 경우
+                success:function(data){
+
+                },
+                //전송이 실패했을 경우
+                error:function(reject){
+
+                }
+                //async 필드 : 동기식과 비동기식을 제어, default : true(비동기)
+                //false값을 줬을 때 동기식으로 동작
+                //beforeSend : ajax가 동작하기 직전(전송 전)에 실행되어야 하는 작업
+            })
+            */
+            $.ajax({
+                //url:'m_data.json',
+                url:'http://192.168.0.29/myserver/empSelect',
+                dataType:'json',
+                success:function(data){
+                    //성공했을 때 들어오는 데이터가 알아서 parsing되어 들어옴
+                    //테이블 생성
+                    let ta = $('<table/>');
+                    $(ta).css('border','1px solid black');
+                    //테이블 헤더 구성
+                    let tr = $('<tr/>');
+                    let header = data[0];
+                    for(let field in header){
+                        $(tr).append($('<th/>').text(field));
+                    }
+                    $(ta).append(tr);
+                    
+                    //테이블 각 행 구성
+                    $(data).each(function(idx,obj){
+                        tr = $('<tr/>');
+                        for(let f in obj){
+                            $(tr).append($('<td/>').text(obj[f]));
+                        }
+                        $(ta).append(tr);
+                    })
+                    $('#content').append(ta);
+                },
+                error:function(err){
+                    console.log(err);
+                }
+            });
+
+        });
+    </script>
+    <div id="content"></div>
+</body>
+</html>

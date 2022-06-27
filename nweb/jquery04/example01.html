@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        table, tr, td, th{
+            border: 1px solid black;
+        }
+        tr:hover{
+            background-color: skyblue;
+            color:white;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        $(function(){
+            $('#selectBtn').click(selectFunc); //dd
+            $('#insertBtn').click(insertFunc); //
+            $('#findBtn').click(findFunc);
+            $('#deleteBtn').click(deleteFunc);
+            $('#updateBtn').click(updateFunc);
+            $('#job_id').on('focus',jobSelect);
+            $('#job_id_sel').on('change',function(){
+                $('#job_id').val($(this).val());
+            })
+
+            $('#selectBtn').trigger('click');
+            formInit('insert');
+            function jobSelect(){
+                let sel = $('#job_id_sel');
+                $('#job_id').val('AC_ACCOUNT');
+                $.ajax({
+                    url:'http://192.168.0.29/myserver/empDeptJob',
+                    dataType:'json',
+                    success:function(res){
+                        let sel = $('#job_id_sel');
+                        let result = res.jobs;
+                        $.each(result,function(idx,job){
+                            let option =$('<option/>').text(job.job_id);
+                            option.attr('value',job.job_id);
+                            sel.append(option);
+                        })
+                        sel.removeAttr('hidden');
+                    }  
+                })
+            }
+            function selectFunc(){
+                $.ajax({
+                    url:'http://192.168.0.29/myserver/empSelect',
+                    dataType:'json',
+                    success:function(res){
+                        $('#selectDiv table').remove();
+                        //thead
+                        let header = res[0];
+                        let table = $('<table/>');
+                        table.css('border','1px solid black')
+                        let tr = $('<tr/>');
+                        for(let f in header){
+                            tr.append($('<th/>').text(f));
+                        }
+                        table.append(tr);
+                        //tbody
+                        $.each(res, function(idx, obj){
+                            tr = $('<tr/>');
+                            for(let field in obj){
+                                $(tr).append($('<td/>').text(obj[field]));
+                            }
+                            $(tr).click(findFunc);
+                            table.append(tr);
+                        })
+                        $('#selectDiv').append(table);
+                    }
+                })
+            }
+
+            function findFunc(){
+                let employeeId = '';
+                if($(this).text()=='개별 조회'){
+                    employeeId = $('#empId').val();
+                }else{
+                    employeeId = $(this).children(':last').prev().text();
+                }
+                $.ajax({
+                    url:'http://192.168.0.29/myserver/empFind',
+                    type:'post',
+                    data:{'employee_id':employeeId},
+                    dataType:'json',
+                    success:function(res){
+                        for(let field in res){
+                            $('#'+field).val(res[field]);
+                        }
+                        return true;
+                    },
+                    error:function(err){
+                        //값이 없으면 err로
+                        console.log(err);
+                        alert('존재하는 번호가 아닙니다.')
+                        $('#info div input').val('');
+                        $('#empId').val('');
+                    }
+                })
+            }
+
+            function insertFunc(){
+                let d = $('#info').serialize();
+                console.log(d);
+                $.ajax({
+                    url:'http://192.168.0.29/myserver/empInsert',
+                    type:'post',
+                    data:$('#info').serialize(),
+                    dataType:'json',
+                    success:function(result){
+                        alert('등록되었습니다.');
+                        $('#selectBtn').click();
+                        formInit('update');
+                    },
+                    error:function(err){
+                        alert('등록에 실패했습니다.')
+                        console.log(err);
+                    }
+                })
+            }
+
+            function updateFunc(){
+                $.ajax({
+                    url:'http://192.168.0.29/myserver/empUpdate',
+                    type:'post',
+                    data:$('#info').serialize(),
+                    dataType:'json',
+                    success:function(res){
+                        alert('수정되었습니다.')
+                        formInit('insert');
+                    },error:function(err){
+                        alert('수정에 실패했습니다.');
+                        console.log(err);
+                    }
+                })
+            }
+
+            function deleteFunc(){
+                $.ajax({
+                    url:'http://192.168.0.29/myserver/empDelete',
+                    type:'post',
+                    data:{'employee_id':$('#empId').val()},
+                    dataType:'json',
+                    success:function(res){
+                        alert('삭제되었습니다.');
+                        formInit('insert');
+                    },error:function(err){
+                        alert('삭제에 실패했습니다.');
+                        console.log(err);
+                    }
+                })
+            }
+
+            function formInit(mode){
+                $('#info input').val('');
+                // $('select').remove();
+                if(mode == 'insert'){
+                    $('#insertBtn').show();
+                    $('#updateBtn').hide();
+                    $('#deleteBtn').hide();
+
+                    $('#employee_id').removeAttr('readonly');
+                }else if(mode=='update'){
+                    $('#insertBtn').hide();
+                    $('#updateBtn').show();
+                    $('#deleteBtn').show();
+
+                    $('#employee_id').attr('readonly','readonly');
+                }
+            }
+        })
+    </script>
+    <div id="modifyDiv">
+        <h3>[입력, 수정, 삭제]</h3>
+        <!--입력, 수정, 삭제 처리-->
+        <form id="info" onsubmit="return false">
+            <div>
+                <label for="employee_id">사원번호</label>
+                <input type="number" id="employee_id" name="employee_id">
+            </div>
+            <div>
+                <label for="last_name">성</label>
+                <input type="text" id="last_name" name="last_name">
+            </div>
+            <div>
+                <label for="first_name">이름</label>
+                <input type="text" id="first_name" name="first_name">
+            </div>
+            <div>
+                <label for="email">이메일</label>
+                <input type="email" id="email" name="email">
+            </div>
+            <div>
+                <label for="job_id">직업</label>
+                <input type="text" id="job_id" name="job_id">
+                <select id ="job_id_sel" name="job_id_sel" hidden></select>
+            </div>
+            <button type="button" id="insertBtn" >등록</button>
+            <button type="hidden" id="updateBtn" >수정</button>
+            <button type="hidden" id="deleteBtn" >삭제</button>
+    </form>
+    </div>
+
+
+    <div id="selectDiv">
+        <h3>[전체 조회, 사원 조회]</h3>
+        <!--전체 조회 || 해당 사원 정보 조회-->
+        <button type="button" id="selectBtn">전체 조회</button>
+        <div>
+            사원번호 조회 : <input type="number" id="empId" name="employee_id">
+            <button type="button" id="findBtn">개별 조회</button>
+        </div>
+       
+    </div>
+</body>
+</html>

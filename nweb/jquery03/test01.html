@@ -1,0 +1,38 @@
+<!--220627-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <button type="button" id="btn">버튼</button>
+    <script>
+        //단일 이벤트 등록 -> 이벤트에 대응되는 메서드를 호출
+        //Click
+        $('#btn').click(function(){
+            $('body').append('<p>단일 이벤트 등록</p>');
+        });
+        //그룹 이벤트 등록 -> 이벤트를 등록할 때 여러 이벤트를 동시에 등록
+        $('#btn').on('click mouseover',function(){
+            let ul = $('body ul:last');
+            let liCnt = ul.children().length;
+            if(liCnt%5==0){
+                ul = $('body').append($('<ul/>'));
+                ul = $('body ul:last');
+            }
+            ul.append('<li>그룹 이벤트 등록</li>')
+        });
+
+        //객체 형태로 여러개의 메소드 등록
+        $('#btn').on({
+            "click":function(){console.log('클릭')},
+            "mouseover":function(){console.log('마우스오버')},
+        });
+    </script>
+
+</body>
+</html>

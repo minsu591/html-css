@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded',function(){
+            function printMessage(){
+                alert('선택되었습니다.');
+            }
+            let v1 = new Vue({
+                el:'#app',
+                data:{
+                    count:0,
+                    isClick : false,
+                    num:0
+                },
+                methods:{
+                    countUp:function(value){
+                        this.count+=value;
+                    },
+                    oneClick:function(){
+                        this.isClick = true;
+                        printMessage();
+                    }
+                }
+            })
+        });
+    </script>
+    <div id="app">
+        <p>{{count}}</p>
+        <button v-on:click="countUp">1씩 증가</button>
+        <button v-on:click="oneClick" v-bind:disabled="isClick">One Click</button>
+        <hr>
+        <label>증가숫자<input v-model.number="num" type="number"></label>
+        <button v-on:click="countUp(num)">{{num}}씩 증가</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded',function(){
+            var v2 = new Vue({
+                el : '#app2',
+                data:{
+                    myText:''
+                },
+                methods:{
+                    showAlert:function(){
+                        alert('Enter키를 눌렀습니다.')
+                    },
+                    func1 : ()=> {
+                        //this를 사용할 수가 없음
+                    }
+                    
+                }
+            });
+        });
+    </script>
+    <div id="app2">
+        <input v-on:keyup.enter="showAlert" v-model.lazy="myText">
+        <p>{{myText}}</p>
+
+    </div>
+    
+</body>
+</html>

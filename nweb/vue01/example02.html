@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded',function(){
+            let v = new Vue({
+                el:'#frmVue',
+                data:{
+                    name:'',
+                    home:'',
+                    stack:[],
+                    radio:'',
+                    sen:''
+                },
+                computed : {
+                    skillList : function(){
+                        let result='';
+                        for(let i = 0;i<this.stack.length;i++){
+                            result+= this.stack[i]+", ";
+                        }
+                        return result;
+                    }
+                }
+            })
+        })
+    </script>
+    <div id = "frmVue">
+        <h1>입력폼 활용</h1>
+        <label>이름 : <input type="text" v-model.lazy="name"></label>
+        <label>사는 곳 :<input type="text" v-model.lazy="home"></label>
+        <div>기술스택<br>
+            <label><input type="checkbox" v-model="stack" value="Java">Java</label>
+            <label><input type="checkbox" v-model="stack" value="JavaScript">JavaScript</label>
+            <label><input type="checkbox" v-model="stack" value="C, C++">C, C++</label>
+            <label><input type="checkbox" v-model="stack" value="go">go</label>
+            <label><input type="checkbox" v-model="stack" value="python">python</label>
+        </div>
+        <div>지원분야 :
+            <label><input type="radio" v-model="radio" value="Front">Front</label>
+            <label><input type="radio" v-model="radio" value="Back">Back</label>
+            <label><input type="radio" v-model="radio" value="Full">Full</label>
+        </div>
+        <textarea v-model.trim="sen"></textarea>
+        <p>저는 {{name}}이고 사는 곳은 {{home}}이며, 기술스택은 {{skillList}}이고, 지원분야는 {{radio}}입니다.<br>
+        한마디 : {{sen}}</p>
+    </div>
+</body>
+</html>

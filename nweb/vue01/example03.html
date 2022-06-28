@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded',function(){
+            let v = new Vue({
+                el : '#cal',
+                data: {
+                    num1 : 1,
+                    num2 : 1,
+                    result : 0
+                },
+                methods :{
+                    addFunc:function(){
+                        result = this.num1 + this.num2;
+                        return result;
+                    },
+                    minusFunc:function(){
+                        result = this.num1 - this.num2;
+                        return result;
+                    },
+                    plusFunc:function(){
+                        result = this.num1 * this.num2;
+                        return result;
+                    },
+                    sFunc:function(){
+                        result = this.num1 / this.num2;
+                        return result;
+                    },
+                    mergeFunc:function(result){
+                        this.result=result
+                    }
+                }
+            })
+            
+        })
+    </script>
+    <div id="cal">
+        <h1>간단한 계산기</h1>
+        <input type="number" v-model.number="num1">
+        <input type="number" v-model.number="num2">
+        <button v-on.click="">덧셈계산</button>
+        <button>뺄셈계산</button>
+        <button>곱셈계산</button>
+        <button>나눗셈계산</button>
+        <p>결과는 {{result}}</p>
+    </div>
+</body>
+</html>

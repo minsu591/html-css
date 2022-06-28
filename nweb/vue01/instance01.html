@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded',function(){
+            /*
+            new Vue({
+                el : 'HTML 요소',
+                // -> 사용하는 모든 데이터에 정의
+                data : '데이터에 대한 정보',
+                computed :'데이터를 연산한 결과',
+                method :'vue instance 관련해 사용되는 함수',
+                watch : '데이터를 감시'
+            });
+            */
+
+            //템플릿 문법 : {{}} -> render() 함수
+            let app = new Vue({
+                el : '#app',
+                data : {
+                    myText : '<h1>Hello!</h1>'
+                }
+            });
+        });
+
+    </script>
+    <div id="app">
+        <p>{{myText}}</p>
+        <!--디렉티브 : 해당 요소에 대해 vue가 실행할 명령어-->
+        <!--단순히 text로만 출력 v-text-->
+        <p v-text="myText"></p>
+        <p v-html="myText"></p>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded',function(){
+            let app2 = new Vue({
+                el : '#app2',
+                data:{
+                    //타입은 js의 타입 대부분 사용 가능
+                    myNumber : 12345,
+                    myText : 'vuejs',
+                    myBoolean : true,
+                    myArray : ['다즐링','얼그레이','실론'],
+                    myObject : {
+                        name : '홍차',
+                        price : 600,
+                    }
+                }
+            })
+        })
+    </script>
+    <div id="app2">
+        <!--필드값을 거치지 않고 바로 가져오는 것-->
+        <p>{{myNumber}}</p>
+        <p>{{myText}}</p>
+        <p>{{myBoolean}}</p>
+        <p>{{myArray}}</p>
+        <p>{{myArray[0]}}</p>
+        <p>{{myObject}}</p>
+        <p>{{myObject.name}} {{myObject.price}}</p>
+        <!--해당되는 vue instance의 모든 값을 출력-->
+        <!--vue의 insatnce의 필드값을 가져오는거-->
+        <p>{{$data}}</p>
+    </div>
+</body>
+</html>

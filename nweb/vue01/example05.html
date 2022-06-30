@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+    <script>
+        let number_list = [2,3,4,5,6,7,8,9];
+        //변경 버튼 : 해당하는 값에 1을 더하는 함수
+        //삭제 : 해당하는 값을 배열에서 삭제하는 함수
+        //추가 : 배열에 1을 추가하는 함수
+        //소트 : 오름차순으로 정렬 + 중복된거 삭제
+        //구구단 보이기 : 배열을 가지고 결과를 출력
+        document.addEventListener('DOMContentLoaded',function(){
+            new Vue({
+                el : '#app',
+                data : {
+                    multiArr : number_list,
+                    show : false
+                },
+                methods:{
+                    changeNum:function(idx){
+                        //삭제는 잘되는데 값 변경이 적용이 안됨
+                        // this.multiArr[idx]++;
+                        Vue.set(this.multiArr,idx,this.multiArr[idx]+1);
+                    },
+                    deleteNum:function(idx){
+                        this.multiArr.splice(idx,1);
+                    },
+                    addNum:function(){
+                        this.multiArr.push(1);
+                    },
+                    sortNum : function(){
+                        this.multiArr = this.multiArr.filter((val,idx)=>{
+                            return this.multiArr.indexOf(val)==idx;
+                        })
+                        //sort는 문자정렬이 되므로, 10이상이면 10이 가장 위로 올라옴,,
+                        //숫자 정렬하는법
+                        this.multiArr.sort(function(a,b){
+                            return a-b
+                        });
+                    },
+                    showNum : function(){
+                        if(this.show==false){
+                            this.show = true;
+                        }else{
+                            this.show =false;
+                        }
+                    }
+                }
+            });
+        })
+    </script>
+    <div id="app">
+        <h2>숫자 배열 조작과 구구단 출력</h2>
+        <ul>
+            <li v-for="(arr,idx) in multiArr">
+                {{arr}}
+                <button @click="changeNum(idx)">변경</button>
+                <button @click="deleteNum(idx)">삭제</button>
+            </li>
+            <br>
+            <button @click="addNum">추가</button>
+            <button @click="sortNum">정렬</button>
+            <button @click ="showNum">구구단 보이기</button>
+            <br>
+            <ul v-if="show">
+                <li v-for="num in multiArr">
+                    <p v-for="n in 9">{{num}} X {{n}} = {{num * n}}</p>
+                </li>
+            </ul>
+        </ul>
+    </div>
+</body>
+</html>

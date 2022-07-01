@@ -1,55 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vue.js 애완용품샵</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="assets/css/app.css">
+    <!-- <link rel="stylesheet" type="text/css" href="/assets/css/app.css" /> -->
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
 
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
+      integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+      crossorigin="anonymous"
+    />
 
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+      crossorigin="anonymous"
+    ></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <style>
+      img {
+        width: 200px;
+        height: 200px;
+      }
+    </style>
 </head>
 <body>
-    <script>
-        //json 파일에서 데이터를 읽어오고 console 출력
-        /*
-        fetch('./products.json')
-        .then(response => {return response.json();})
-        .then(data => {
-            console.log(data);
-        }).catch(err => console.log(arr));
-        */
-        $.ajax({
-                url:'products.json',
-                dataType:'json',
-                success:function(data){
-                    console.log(data);
-                }
-            })
-    </script>
+
     <script>
         document.addEventListener('DOMContentLoaded',function(){
             var webstore = new Vue({
                 el : '#app',
                 data : {
                     sitename : 'Vue.js 애완용품샵',
-                    product : {
-                        id : 1001,
-                        title : '고양이 사료, 25파운드',
-                        description : '당신의 고양이를 위한 <em>거부할 수 없는</em> 유기농 25파운드 사료입니다.',
-                        price : 100000,
-                        image : 'assets/images/product-fullsize.png',
-                        stock : 5,
-                        rating: 3
-                    },
+                    // product : {
+                    //     id : 1001,
+                    //     title : '고양이 사료, 25파운드',
+                    //     description : '당신의 고양이를 위한 <em>거부할 수 없는</em> 유기농 25파운드 사료입니다.',
+                    //     price : 100000,
+                    //     image : 'assets/images/product-fullsize.png',
+                    //     stock : 5,
+                    //     rating: 3
+                    // },
+                    products : [],
                     cart : [],
                     showProduct:true,
                     order : {
@@ -78,10 +86,9 @@
                     //연관되어있는 데이터 속성이 업데이트 될 때!!!
                     cartItemCount : function(){
                         return this.cart.length;
-                    },
-                    canAddToCart : function(){
-                        return this.cartItemCount < this.product.stock;
                     }
+                    
+
                 },
                 filters : { //원하는 것만 뿌려줌
                     formatPrice : function(price){
@@ -104,8 +111,8 @@
                     }
                 },
                 methods:{
-                    addToCart : function(){
-                        this.cart.push(this.product.id);
+                    addToCart : function(product){
+                        this.cart.push(product.id);
                     },
                     showCheckout : function(){
                         //toggle처럼 true -> false, false -> true
@@ -116,9 +123,42 @@
                         //js는 페이지 전환이 되면 db에서 끌고오지 않으면 데이터가 초기화되는데
                         //vue는 일시적으로 데이터를 저장함
                     },
-                    checkRating : function(n){
-                        return (this.product.rating - n)>=0;
+                    checkRating : function(n,product){
+                        return (product.rating - n)>=0;
+                    },
+                    canAddToCart : function(product){
+                        return this.cartCount(product.id) < product.stock;
+                    },
+                    cartCount : function(productId){
+                        let count = 0;
+                        for(let i =0;i<this.cart.length;i++){
+                            if(this.cart[i] == productId){
+                                count++;
+                            }
+                        }
+                        return count;
                     }
+                },
+                created : function(){
+                    //vue instance가 생성되고 나서 벌어지는 일련의 작업들을 function 형태로
+                    //여기서 데이터 가져올 수 있게
+                    //json 파일에서 데이터를 읽어오고 console 출력
+                    /*
+                    fetch('./products.json')
+                    .then(response => {return response.json();})
+                    .then(data => {
+                        console.log(data);
+                    }).catch(err => console.log(arr));
+                    */
+                    $.ajax({
+                            url:'products.json',
+                            dataType:'json',
+                            success:function(data){
+                                //this를 사용하면 ajax 자체 객체를 불러오기 때문에 var webstore 의 값을 불러서 저장해야함.
+                                webstore.products = data.products;
+                                console.log(webstore.products)
+                            }
+                        })
                 }
             });
         });
@@ -138,31 +178,34 @@
             </div>
         </header>
         <main>
-            <div class="row product" v-if="showProduct">
-                <div class="col-md-4">
-                    <!--상품 이미지 출력-->
-                    <figure>
-                        <img v-bind:src="product.image">
-                    </figure>
-                </div>
-                <div class="col-md-4 col-expand">
-                    <!--상품 관련 정보 출력-->
-                    <h1 v-text="product.title"></h1>
-                    <p v-html="product.description"></p>
-                    <p class="price">{{product.price | formatPrice}}</p>
-                    <!--왼쪽의 property에 대해서 필터 값을 가져다줌-->
-                </div>
-                <button class="btn btn-primary btn-lg"
-                v-on:click="addToCart" 
-                v-show="canAddToCart">장바구니 담기</button>
-                <!--v-bind:disabled="!canAddToCart"-->
-                <span class="inventory-message" v-if="(product.stock - cartItemCount) ==0">품절!</span>
-                <span class="inventory-message" v-else-if="(product.stock - cartItemCount) > 2"> {{product.stock - cartItemCount}}개 남았습니다!</span>
-                <span class="inventory-message" v-else="">지금 구매하세요!</span>
-                <div class="rating">
-                    <span v-for="n in 5" v-bind:class="{'rating-active':checkRating(n)}">☆</span>
+            <div class= "row product" v-if="showProduct">
+                <div class="row product" v-for="product in products">
+                    <div class="col-md-4">
+                        <!--상품 이미지 출력-->
+                        <figure>
+                            <img v-bind:src="product.image">
+                        </figure>
+                    </div>
+                    <div class="col-md-4 col-expand">
+                        <!--상품 관련 정보 출력-->
+                        <h1 v-text="product.title"></h1>
+                        <p v-html="product.description"></p>
+                        <p class="price">{{product.price | formatPrice}}</p>
+                        <!--왼쪽의 property에 대해서 필터 값을 가져다줌-->
+                    </div>
+                    <button class="btn btn-primary btn-lg"
+                    v-on:click="addToCart(product)" 
+                    v-show="canAddToCart(product)">장바구니 담기</button>
+                    <!--v-bind:disabled="!canAddToCart"-->
+                    <span class="inventory-message" v-if="(product.stock - cartCount(product.id)) ==0">품절!</span>
+                    <span class="inventory-message" v-else-if="(product.stock - cartCount(product.id)) > 2"> {{product.stock - cartCount(product.id)}}개 남았습니다!</span>
+                    <span class="inventory-message" v-else="">지금 구매하세요!</span>
+                    <div class="rating">
+                        <span v-for="n in 5" v-bind:class="{'rating-active':checkRating(n,product)}">☆</span>
+                    </div>
                 </div>
             </div>
+
             <div class="row" v-else>
                 <div class="col-md-10 col-md-offset-1">
                     <div class="panel panel-info">

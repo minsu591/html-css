@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded',function(){
+            let component={
+                /*
+                규칙
+                1. html 태그로 구성
+                2. 인접(형제) 태그가 아닌 부모-자식관계로 구성
+                
+                */
+                template : `<div>Hello, vue.js
+                    <br>
+                    <p>{{text}}</p>
+                    <input v-model="text">
+                    </div>`,
+                data : function(){
+                    //함수에 정의하되 반환 값을 반드시 객체로 구성 ( 필드 -> template 속성에서 사용하는 프로퍼티)
+                    return {
+                        message : '컴포넌트 메세지'
+                    }
+                },
+                props : {
+                    text: {
+                        type : [String,Number],
+                        required : true,
+                        //default : '기본값입니다.' //객체나 배열과 같은 참조타입은 반드시 function(){return object or array}
+                        default : function(value){
+                            return value+'검증완료되었습니다.'
+                        }
+                    }
+                },
+                /*
+                1. 표기방법 : 배열 -> 간단하게 정의
+                2. 표기방법 : 객체 -> 각 프로퍼티의 옵션을 정의
+                */
+                computed : {},
+                methods : {},
+                watch : {}
+            };
+            //전역 등록 -> html의 모든 vue 인스턴스에서 사용가능
+            // Vue.component('static-component',component);
+            
+            //지역 등록(인스턴스 등록) -> 포함된 vue 인스턴스의 범위 안에서만 사용가능
+            new Vue({
+                el:'#app',
+                components : {
+                    'instance-component' : component
+                },
+                data : {
+                    data : '테스트입니다.'
+                }
+            })
+        })
+    </script>
+    <div id="app">
+        <!--전역 등록-->
+        <!-- <static-component></static-component> -->
+        <hr>
+        <input v-model="data">
+        <instance-component v-bind:text="data"></instance-component>
+    </div>
+    <hr>
+    <hr>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded',function(){
+            const component = {
+                template : `<div>
+                                숫자 : {{num + 1}}<br>
+                                문자열 : {{str}}<br>
+                                짝수? : {{even}}<br>
+                                객체 : {{obj.message}}
+                            <div>`,
+                props : {
+                    num : {
+                        //num property에는 required 넣어주기
+                        type : Number,
+                        required : true
+                    },
+                    str : {
+                        type : String,
+                        default : '안녕'
+                    },
+                    obj : {
+                        type : Object,
+                        default : () => {
+                            return { message : '안녕, 객체로부터'}
+                        }
+                    },
+                    even : {
+                        //들어오는 값에 대해서 검증한 결과를 이용
+                        //출력 데이터가 우리가 원하는 값인지 확인하는 것
+                        validator : (value) => {
+                            return (value%2) == 0;
+                        }
+                    }
+                }
+            };
+
+            new Vue({
+                el : '#app2',
+                components : {
+                    'my-component' : component
+                },
+                data : {
+                    myNumber : 43,
+                    passedString : '안녕, 부모로부터',
+                    passedObject : {
+                        message : '넘겨준 객체의 메세지'
+                    }
+                }
+            }) 
+        })
+    </script>
+    <div id="app2">
+        <my-component :num="myNumber"
+                      :str="passedString"
+                      :even="myNumber"
+                      :obj="passedObject"></my-component>
+    </div>
+</body>
+</html>

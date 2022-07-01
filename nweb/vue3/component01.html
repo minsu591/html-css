@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .my-comp{
+            width:300px;
+            background-color: gainsboro;
+            border : solid;
+            border-color: purple;
+            border-radius: 8px;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded',function(){
+            //전역 등록
+            //Vue를 선언한 어디에서든 쓸 수 있음
+            Vue.component('my-component',{
+                template : '<div><h1>사용자 정의 컴포넌트입니다.</h1></div>'
+            });
+            let component = {
+                template : '<p class="my-comp">Hello</p>'
+            }
+
+            new Vue({
+                el : '#app',
+                components : {
+                    //vue 안에 component를 등록할 때 components로 선언, 여러 개를 쓸 수 있기 때문에 객체로 선언
+                    //해당 뷰 안에서만 사용가능함
+                    //동일한 이름의 컴포넌트라도 어느 뷰에 선언된 컴포넌트냐에 따라서 내용도 다르게 할 수 있음
+
+                    'instance-component': {
+                        //숫자 1 앞의 `키 사용하면 줄 바꿈도 사용 가능
+                        //태그 안에 글자 넣기
+                        template : '<div style="border:1px solid black;"><span><h3><em>인스턴스로 등록한 컴포넌트입니다.</em></h3></span></div>'
+                    },
+                    //직접 컴포넌트를 넣기보다는 변수로 많이 넣음
+                    'm-component': component
+                }
+            });
+            new Vue({
+                el : '#app2',
+                components : {
+                    'instance-component': {
+                        template : '<span><h3><em>인스턴스로 등록한 컴포넌트입니다.</em></h3></span>'
+                    }
+                }
+            });
+        });
+        
+    </script>
+    <div id="app">
+        <!--컴포넌트 이름을 태그처럼 사용-->
+        <my-component></my-component>
+        <instance-component></instance-component>
+        <m-component></m-component>
+    </div>
+    <div id="app2">
+        <my-component></my-component>
+        <instance-component></instance-component>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded',function(){
+            const myComponent = {
+                template : `<p class="my-comp">
+                    카운터
+                    <button @click="addOne">추가</button>
+                    {{count}}
+                    </p>`,
+            data : function(){
+                let object = {};
+                object.count = 0;
+                //p태그 내에 정의된 변수를 이와 같이 넣기
+                return object;
+            },
+            methods : {
+                addOne : function(){
+                    this.count++;
+                }
+            }
+            }
+            new Vue({
+                el:'#app3',
+                components : {
+                    'my-component':myComponent
+                }
+            })
+        });
+    </script>
+    <hr>
+    <hr>
+    <div id="app3">
+        <my-component></my-component>
+        <my-component></my-component>
+        <my-component></my-component>
+    </div>
+    <hr>
+    <script>
+        document.addEventListener('DOMContentLoaded',function(){
+            let component = {
+                template : `<p class='my-comp'>나는 {{myName}} 입니다. 오늘은 {{today}} 입니다.</p>`,
+                props : { //외부에서 들어오는 값을 컨트롤 + 검증
+                    //사용하고자하는 이름, 어떤 타입으로 들어올지
+                    myName : String,
+                    today : { //today에 대해 조건을 주겠다면?
+                        type : Number,
+                        
+                    }
+                },
+                //props : ['myName']
+                // props : ['myName', 'today'],
+                created : function(){
+                    if(this.myName == null || this.myName == 0){
+                        this.myName = '무명';
+                    }
+                    if(this.today ==null || this.today ==0){
+                        this.today = -1;
+                    }
+                }
+            }
+            let data = '홍길동';
+            new Vue({
+                el : '#app4',
+                data : {
+                    name : data,
+                    array : {
+                        myName : '',
+                        today : Date.now()
+                    }
+                    
+                },
+                computed : {
+                    dataList : function(){
+                        return{
+                            myName : this.name,
+                            today: Date.now()
+                        }
+                    }
+                },
+                components : {
+                    'name-component' : component
+                }
+            })
+        })
+    </script>
+    <div id="app4">
+        <!--html은 어떻게 쓰든지 소문자로 인식함-->
+        <input v-model="array.myName">
+        <!--v-bind를 연결하지 않으면 literal로 넘어감-->
+        <!--속성을 선언하듯이 계속 선언해야함-->
+        
+        <!-- <name-component v-bind:my-name="name" v-bind:today="Date.now()"></name-component> -->
+        <name-component v-bind="dataList"></name-component>
+        <!-- 1. component 하위의 독립된 객체 -> 값을 전달할 때 props 속성을 이용해서 프로퍼티 정의
+             2. 복수로 정의된 프로퍼티일 경우 개별적으로 v-bind 디렉티브를 연결
+             3. 복수로 정의된 프로퍼티들을 필드로 가지는 객체를 v-bind에 값으로 넘겨줄 수 있음
+             3-1) data 속성에 객체로 정의
+             3-2) computed 속성에 객체를 반환하는 함수로 정의
+             4. v-bind 디렉티브를 연결하지 않은 상태에서 값을 넘길 때는 반드시 문자로 넘어감
+             5. 문자를 제외한 자바스크립트 사용하는 타입을 값으로 넘기고 싶으 경우에는 v-bind 디렉티브 연결
+        -->
+        <name-component v-bind="array"></name-component>
+        <name-component my-name='영희' v-bind:today="100"></name-component>
+        <name-component></name-component>
+    </div>
+</body>
+</html>

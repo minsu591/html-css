@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded',function(){
+            //$on -> 컴포넌트 간에 이벤트를 수신하는 경우
+            //$emit -> event를 통해 컴포넌트가 상위 컴포넌트에 메세지를 보내는 경우
+            //부모 컴포넌트와 자식 컴포넌트 사이에서 값이 변경함을 이벤트를 이용해 알려줌
+            const component = {
+                template : `<div>
+                            <button @click="childIncrementCounter">자식으로부터 증가 </button>
+                            </div>`,
+                methods : {
+                    childIncrementCounter : function(){
+                        //이 이벤트가 어디에 있는지가 중요
+                        this.$emit('increment-me');
+                    }
+                }
+            };
+
+            const btnComponent = {
+                template : `<div>
+                                <input v-model="counter" readonly>
+                                <button v-on:click="counting">{{counter}}</button>
+                            </div>`,
+                data : function(){
+                    return {
+                        counter : 0
+                    }
+                },
+                methods : {
+                    counting : function(){
+                        this.counter+=1;
+                    }
+                },
+                watch : {
+                    counter : function(){
+                        this.$emit('count-up');
+                    }
+                }
+            };
+
+            new Vue({
+                el : '#app',
+                data : {
+                    counter : 0
+                },
+                methods : {
+                    incrementCounter : function(){
+                        this.counter++;
+                    }
+                },
+                components : {
+                    'button-component' : component,
+                    'count-component' : btnComponent
+                }
+            })
+
+            
+        });
+    </script>
+    <div id="app">
+        <p>{{counter}}</p>
+        <button @click = "incrementCounter">카운터 증가</button>
+        <button-component v-on:increment-me ="incrementCounter"></button-component>
+        <count-component v-on:count-up="incrementCounter"></count-component>
+    </div>
+    <hr>
+    <script>
+        document.addEventListener('DOMContentLoaded',function(){
+            const component = {
+                template : `<div>
+                                <button v-on:click="countUp">자식으로부터 증가</button>
+                            </div>`,
+                methods : {
+                    countUp : function(){
+                        this.$emit('update:myCounter',this.myCounter+1);
+                    }
+                },
+                props : ['my-counter']
+            };
+
+            new Vue({
+                el : '#app2',
+                data : {
+                    counter : 0
+                },
+                components : {
+                    'btn-comp' : component
+                },
+                methods:{
+                    counting : function(){
+                        this.counter++;
+                    }
+                }
+            })
+        });
+    </script>
+    <div id="app2">
+        {{counter}}<br>
+        <button v-on:click="counting">카운터 증가</button>
+        <btn-comp v-bind:my-counter.sync="counter"></btn-comp>
+        <!-- v-bind:my-counter="counter" @update:my-counter="(val) => {bar = val}"-->
+    </div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router@3.5.3/dist/vue-router.js"></script>
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded',function(){
+            const router = new VueRouter({
+                //routes는 배열, 하나하나는 객체
+                //경로에 따라 데이터를 보여줌
+                routes : [{
+                    path : '/foo',
+                    component : {
+                        template : `<div>foo</div>`
+                    }
+                },
+                {
+                    path : '/bar',
+                    component : {
+                        template : `<div>bar</div>`
+                    }
+                },
+                {
+                    //경로를 이용해서 데이터를 넘겨받은 후 출력하는
+                    path : '/user/:id',
+                    component : {
+                        template : `<div> User {{this.$route.params.id}}</div>`
+                    }
+                }]
+            });
+            //접근 방법
+            new Vue({
+                router
+            }).$mount('#app');
+        });
+    </script>
+    <div id="app">
+        <h1>Hello App!</h1>
+        <p>
+            <!--메뉴-->
+            <router-link to="/foo">Go to Foo</router-link>
+            <router-link to="/bar">Go to Bar</router-link>
+            <router-link to="/user/1234">Go to User</router-link>
+        </p>
+        <router-view></router-view>
+    </div>
+</body>
+</html>

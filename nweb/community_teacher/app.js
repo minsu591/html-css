@@ -19,7 +19,9 @@ new Vue({
     data : {
         userData : [],
         contentData : [],
-        commentData : []
+        commentData : [],
+        subCommentData : [],
+        loginUser : {}
     },
     computed : {
         //기본 property처럼 사용할 수 있음
@@ -46,6 +48,27 @@ new Vue({
         this.userData = originalData['User'];
         this.contentData = originalData['Content'];
         this.commentData = originalData['Comment'];
+        this.loginUser = this.userData[0];
+    },
+    methods : {
+        getData : function(){
+            return {
+                userData : this.userData,
+                contentData : this.contentData,
+                commentData : this.commentData,
+                postData : this.postData
+            }
+        },
+        getLoginInfo : function(){
+            //로그인 정보
+            return this.loginUser;
+        },
+        setContentData : function(contentData){
+            this.contentData = contentData;
+        },
+        setCommentData : function(commentData){
+            this.commentData = commentData;
+        }
     }
 })
 

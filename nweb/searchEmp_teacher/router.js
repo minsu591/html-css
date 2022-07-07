@@ -1,4 +1,6 @@
+import empRead from './components/empRead.js';
 import {empSelect} from './components/empSelect.js';
+import empWrite from './components/empWrite.js';
 
 export default new VueRouter({
     mode : 'history',
@@ -7,6 +9,18 @@ export default new VueRouter({
             path : '/',
             name : 'empSelect',
             component : empSelect
+        },
+        {
+            path : '/empRead/:empId',
+            name : 'empRead',
+            component : empRead,
+            props : true
+        },
+        {
+            path: '/empWrite/:empId',
+            name : 'empWrite',
+            component : empWrite,
+            props :true
         },
         {
             path :'*',
